@@ -15,6 +15,7 @@ jobs:
             channel: project-lms
             text: "lms production deployment started"
   sonaranalysis:
+    needs: approval
     name: sonar
     runs-on: ubuntu-latest
     steps:
