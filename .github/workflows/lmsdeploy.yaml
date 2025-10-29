@@ -26,3 +26,13 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+  database:
+    needs:
+      - approval
+    runs-on: self-hosted
+    steps:
+      - name: create network
+        run: docker network create lmsnetwork
+      - name: create database
+        run: docker container run -dt --name lmsdb -p 5432:5432 --network lmsnetwork -e POSTGRES_PASSWORD=Admin123 postgres
+    
