@@ -35,4 +35,19 @@ jobs:
         run: docker network create lmsnetwork
       - name: create database
         run: docker container run -dt --name lmsdb -p 5432:5432 --network lmsnetwork -e POSTGRES_PASSWORD=Admin123 postgres
-    
+  backend:
+    needs:
+     - approval
+     - database
+    runs-on: self-hosted
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5.0.0
+      - name: Build Docker Image
+        run: |
+          cd api
+          docker build -t sudheeer555/lmsdockerapi .
+      - name: Run Container
+        run: docker container run -dt --name api --network lmsnetwork -p 3000:3000 -e DATABASE_URL=postgresql://postgres:Admin123@lmsdb:5432/postgres -e PORT=3000 -e MODE=Prod sudheeer555/lmsdockerapi
+        
+     
