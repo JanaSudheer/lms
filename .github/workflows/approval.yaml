@@ -1,11 +1,13 @@
 name: Approval
-on: workflow_dispatch
+on: workflow_call
 jobs: 
   approval_and_notification:
     runs-on: ubuntu-latest
     environment:
       name: production
     steps:
+     - name: checkout the code
+       uses: actions/checkout@v5.0.0
      - name: send notification to slack
        uses: slackapi/slack-github-action@v2.1.1
        with:
