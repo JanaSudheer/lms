@@ -1,23 +1,18 @@
-name: Approval
+name: approval
 on: workflow_call
-  
-jobs: 
-  approval_and_notification:
+jobs:
+  approval:
     runs-on: ubuntu-latest
     environment:
       name: production
     steps:
-     - name: checkout the code
-       uses: actions/checkout@v5.0.0
-     - name: send notification to slack
-       uses: slackapi/slack-github-action@v2.1.0
-       with:
-         webhook: ${{ secrets.SLACK_WEBHOOK_URL }}
-         webhook-type: incoming-webhook
-         payload: |
-            {
-              "channel": "project-oct"
-              "text": "🚀 Deployment started for *${{ github.repository }}* by *${{ github.actor }}*"
-            }
-       
-  
+      - name: checkout
+        uses: actions/checkout@v4.2.2
+      - name: send notification
+        uses: slackapi/slack-github-action@v2.1.0
+        with:
+          webhook: ${{ secrets.SLACK_WEBHOOK_URL }}
+          webhook-type: incoming-webhook
+          channel: project-oct
+          payload: |
+            text: "lms production deployment started go and approve it"
