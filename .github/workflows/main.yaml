@@ -6,28 +6,34 @@ jobs:
   sonaranalysis:
     needs: approval
     uses: ./.github/workflows/sonar_analysis.yaml
+    secrets: inherit
   database:
     needs: approval
     uses: ./.github/workflows/database.yml
+    secrets: inherit
   build:
     needs: database
     uses: ./.github/workflows/build.yaml
+    secrets: inherit
   backend:
     needs:
       - database
       - build
     uses: ./.github/workflows/backend.yaml
+    secrets: inherit
   frontend:
     needs:
       - backend
       - build
     uses: ./.github/workflows/frontend.yaml  
+    secrets: inherit
   feedback:
     needs:
       - frontend
       - backend
       - database
     uses: ./.github/workflows/feedback.yaml  
+    secrets: inherit
       
     
     
