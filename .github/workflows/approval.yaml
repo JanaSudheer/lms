@@ -11,11 +11,10 @@ jobs:
      - name: checkout the code
        uses: actions/checkout@v5.0.0
      - name: send notification to slack
-       uses: slackapi/slack-github-action@v2.1.1
+       uses: slackapi/slack-github-action@v2.1.0
        with:
          webhook: ${{ secrets.SLACK_WEBHOOK_URL }}
          webhook-type: incoming-webhook
-         method: webhook
          payload: |
             {
               "channel": "project-oct"
