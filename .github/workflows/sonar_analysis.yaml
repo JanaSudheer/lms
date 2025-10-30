@@ -1,10 +1,5 @@
 name: SonarAnalysis
-
-on:
-  - workflow_call
-  - workflow_dispatch
-
-
+on: workflow_call
 jobs:
   build:
     name: Build and analyze
