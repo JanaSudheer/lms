@@ -13,7 +13,10 @@ jobs:
      - name: send notification to slack
        uses: slackapi/slack-github-action@v2.1.1
        with:
-        payload: '{"text":"🚀 Deployment started for ${{ github.repository }} by ${{ github.actor }}"}'
-        webhook: ${{ secrets.SLACK_WEBHOOK_URL }}
+         webhook: ${{ secrets.SLACK_WEBHOOK_URL }}
+         payload: |
+            {
+              "text": "🚀 Deployment started for *${{ github.repository }}* by *${{ github.actor }}*"
+            }
        
   
