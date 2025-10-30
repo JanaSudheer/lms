@@ -1,0 +1,16 @@
+name: FeedBack
+on: workflow_call
+jobs: 
+  FeedBack:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send to slack
+        uses: slackapi/slack-github-action@v2.1.1
+        with:
+          webhook: ${{ secrets.SLACK_WEBHOOK_URL }}
+          webhook-type: incoming-webhook
+          channel: project-lms
+          payload: |
+            text: " lms deployed successfully "
+          
+  
