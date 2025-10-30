@@ -1,5 +1,7 @@
 name: Approval
-on: workflow_call
+on: 
+  - workflow_call
+  - workflow_dispatch
 jobs: 
   approval_and_notification:
     runs-on: ubuntu-latest
