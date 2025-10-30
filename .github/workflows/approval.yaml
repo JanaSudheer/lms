@@ -13,10 +13,7 @@ jobs:
      - name: send notification to slack
        uses: slackapi/slack-github-action@v2.1.1
        with:
-         webhook: ${{ secrets.SLACK_WEBHOOK_URL}}
-         webhook-type: incoming-webhook
-         channel: project-lms
-         payload: |
-          text: "lms production deployment started observe it"
+        payload: '{"text":"Deployment started!"}'
+        webhook-url: ${{ secrets.SLACK_WEBHOOK_URL }}
        
   
