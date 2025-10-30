@@ -1,1 +1,18 @@
-
+name: Approval
+on: workflow_dispatch
+jobs: 
+  approval_and_notification:
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+    steps:
+     - name: send notification to slack
+       uses: slackapi/slack-github-action@v2.1.1
+       with:
+         webhook: ${{ secrets.SLACK_WEBHOOK_URL}}
+         webhook-type: incoming-webhook
+         payload: |
+          channel: project-lms
+          text: "lms production deployment started observe it"
+       
+  
