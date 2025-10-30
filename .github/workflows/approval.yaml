@@ -18,6 +18,7 @@ jobs:
          method: webhook
          payload: |
             {
+              "channel": "project-oct"
               "text": "🚀 Deployment started for *${{ github.repository }}* by *${{ github.actor }}*"
             }
        
