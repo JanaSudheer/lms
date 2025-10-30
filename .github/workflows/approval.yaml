@@ -15,6 +15,7 @@ jobs:
        with:
          webhook: ${{ secrets.SLACK_WEBHOOK_URL }}
          webhook-type: incoming-webhook
+         method: webhook
          payload: |
             {
               "text": "🚀 Deployment started for *${{ github.repository }}* by *${{ github.actor }}*"
