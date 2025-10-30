@@ -1,0 +1,28 @@
+name: LMSDEPLOYMENT
+on: workflow_dispatch
+jobs:
+  approval:
+    uses: ./.github/workflows/approval.yaml
+  sonaranalysis:
+    needs: approval
+    uses: ./.github/workflows/sonar_analysis.yaml
+  database:
+    needs: approval
+    uses: ./.github/workflows/database.yml
+  build:
+    needs: database
+    uses: ./.github/workflows/build.yaml
+  backend:
+    needs:
+      - database
+      - build
+    uses: ./.github/workflows/backend.yaml
+  frontend:
+    needs:
+      - backend
+      - build
+    uses: ./.github/workflows/frontend.yaml  
+    
+    
+    
+    
