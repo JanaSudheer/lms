@@ -13,7 +13,7 @@ jobs:
           fi
       - name: check weather the db container exists or not
         run: |
-         if docker network ps -a --format '{{ .Names }}' | grep -wq lmsdb; then
+         if docker ps -a --format '{{ .Names }}' | grep -wq lmsdb; then
            echo "lms db exists"
          else
            docker container run -dt --name lmsdb --network lmsnetwork -p 5432:5432 -e POSTGRES_PASSWORD=${{ secrets.DB_PASSWORD}} postgres
