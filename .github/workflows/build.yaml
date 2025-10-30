@@ -13,7 +13,7 @@ jobs:
       - name: build the frontend
         run: |
           cd webapp
-          docker buid -t ${{ vars.DOCKER_USERNAME }}/lmswebapp:latest .
+          docker build -t ${{ vars.DOCKER_USERNAME }}/lmswebapp:latest .
       - name: docker login
         uses: docker/login-action@v3.6.0
         with:
